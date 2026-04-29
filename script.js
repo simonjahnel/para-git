@@ -2,12 +2,13 @@
 
 function login() {
     console.log("click detectado");
-    let email = document.getElementById("email").value
-    let password = document.getElementById("password").value;
-    let mensaje = document.getElementById("mensaje");
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value.trim();
+    
 
     if (email == "usuariodeejemplo@hotmail.com"  && password === "123456") {
-        document.getElementById("mensaje").innerText = "Bienvenido!";
+        localStorage.setItem("logueado", "true");
+        window.location.href = "main.html";
     
     } else {
         document.getElementById("mensaje").innerText = "Datos incorrectos, intentelo de nuevo";
@@ -15,6 +16,13 @@ function login() {
 
 
 }
+
+if (window.location.pathname.includes("main.html")) {
+    if (localStorage.getItem("logueado") !== "true") {
+        window.location.href = "index.html";
+    }
+}
+
 
 function irARegistro() {
 
